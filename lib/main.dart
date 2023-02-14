@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodui/pages/StarterPage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -6,15 +7,12 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Food Ui',
       debugShowCheckedModeBanner: false,
-      home: ,
+      home: StartPage(),
     );
   }
 }
-
