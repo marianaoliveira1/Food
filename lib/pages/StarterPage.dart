@@ -2,10 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:foodui/animations/FadeAnimation.dart';
 
 class StartPage extends StatefulWidget {
-  const StartPage({super.key});
-
   @override
   State<StartPage> createState() => _StartPageState();
 }
@@ -37,47 +36,55 @@ class _StartPageState extends State<StartPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                const Text(
-                  'Recebendo pedido para entrega',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 50,
-                      fontWeight: FontWeight.bold),
-                ),
+                FadeAnimation(
+                    .7,
+                    Text(
+                      'Recebendo pedido para entrega',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 50,
+                          fontWeight: FontWeight.bold),
+                    )),
                 const SizedBox(
                   height: 20,
                 ),
-                const Text(
-                  "Veja os restaurantes próximos \nadicionando a localização",
-                  style:
-                      TextStyle(color: Colors.white, height: 1.4, fontSize: 18),
-                ),
+                FadeAnimation(
+                    .1,
+                    Text(
+                      "Veja os restaurantes próximos \nadicionando a localização",
+                      style: TextStyle(
+                          color: Colors.white, height: 1.4, fontSize: 18),
+                    )),
                 const SizedBox(
                   height: 100,
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      gradient: LinearGradient(
-                          colors: [Colors.yellow, Colors.orange])),
-                  child: MaterialButton(
-                    minWidth: double.infinity,
-                    onPressed: () {},
-                    child: Text(
-                      "Entre",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ),
+                FadeAnimation(
+                    1.2,
+                    Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          gradient: LinearGradient(
+                              colors: [Colors.yellow, Colors.orange])),
+                      child: MaterialButton(
+                        minWidth: double.infinity,
+                        onPressed: () {},
+                        child: Text(
+                          "Entre",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    )),
                 const SizedBox(
                   height: 30,
                 ),
-                Align(
-                  child: Text(
-                    "Entregue à sua porta 24 horas por dia, 7 dias por semana",
-                    style: TextStyle(color: Colors.white70, fontSize: 15),
-                  ),
-                ),
+                FadeAnimation(
+                    1.4,
+                    Align(
+                      child: Text(
+                        "Entregue à sua porta 24 horas por dia, 7 dias por semana",
+                        style: TextStyle(color: Colors.white70, fontSize: 15),
+                      ),
+                    )),
                 const SizedBox(
                   height: 30,
                 ),
