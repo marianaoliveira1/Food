@@ -1,15 +1,49 @@
+import 'dart:html';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:foodui/animations/FadeAnimation.dart';
+import 'package:foodui/pages/HomePage.dart';
+import 'package:page_transition/page_transition.dart';
 
 class StartPage extends StatefulWidget {
   @override
   State<StartPage> createState() => _StartPageState();
 }
 
-class _StartPageState extends State<StartPage> {
+class _StartPageState extends State<StartPage> with TickerProviderStateMixin {
+  AnimationController _animationController;
+  Animation<double> _animation;
+
+  bool _textVisible = true;
+
+  @override
+  void initState() {
+    _animationController =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 100));
+
+    _animation =
+        Tween<double>(begin: 0.0, end: 25.0).animate(_animationController);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  void _onTap() {
+    setState(() {
+      _textVisible = false;
+    });
+
+    _animationController.forward().then((f) => Navigator.push(context,
+        PageTransition(child: HomePage(), type: PageTransitionType.fade)));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,7 +101,7 @@ class _StartPageState extends State<StartPage> {
                               colors: [Colors.yellow, Colors.orange])),
                       child: MaterialButton(
                         minWidth: double.infinity,
-                        onPressed: () {},
+                        onPressed: () => _onTap(),
                         child: Text(
                           "Entre",
                           style: TextStyle(color: Colors.white),
