@@ -32,6 +32,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: SafeArea(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.0),
@@ -71,9 +72,39 @@ class _HomePageState extends State<HomePage> {
                             1.6, makeCategory(isActive: false, title: 'Sucos')),
                       ],
                     ),
-                  )
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
                 ],
               ),
+            ),
+            FadeAnimation(
+                1,
+                Padding(
+                  padding: EdgeInsets.all(20),
+                  child: Text(
+                    'Delivery gratis',
+                    style: TextStyle(
+                        color: Colors.grey[700],
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                  ),
+                )),
+            Expanded(
+                child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.0),
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  FadeAnimation(1.4, makeItem(image: 'assets/images/one.jpg')),
+                  FadeAnimation(1.5, makeItem(image: 'assets/images/two.jpg')),
+                  FadeAnimation(1.6, makeItem(image: 'assets/images/three.jpg'))
+                ],
+              ),
+            )),
+            SizedBox(
+              height: 30,
             )
           ],
         ),
@@ -99,5 +130,68 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+
+  Widget makeItem({image}) {
+    return AspectRatio(
+        aspectRatio: 1 / 1.4,
+        child: GestureDetector(
+          child: Container(
+            margin: EdgeInsets.only(right: 20),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                image: DecorationImage(
+                  image: AssetImage(image),
+                  fit: BoxFit.cover,
+                )),
+            child: Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  gradient:
+                      LinearGradient(begin: Alignment.bottomCenter, stops: [
+                    .2,
+                    .9
+                  ], colors: [
+                    Colors.black.withOpacity(.9),
+                    Colors.black.withOpacity(.3),
+                  ])),
+              child: Padding(
+                padding: EdgeInsets.all(20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: Icon(
+                        Icons.favorite,
+                        color: Colors.white,
+                      ),
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "\$ 15.00",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 40,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          "Vegetarian Pizza",
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ));
   }
 }
